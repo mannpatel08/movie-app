@@ -1,0 +1,43 @@
+<%- include('header', { bodyClass: 'home-page' }) %>
+
+<div class="home-wrapper">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Unlimited movies, shows, and more</h1>
+            <h2>Starts at ₹149. Cancel at any time.</h2>
+            <p>Ready to watch? Enter your email to create or restart your membership.</p>
+            <div class="email-signup">
+                <input type="email" placeholder="Email address">
+                <button class="btn-get-started">
+                    Get Started <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending-section">
+        <h2>Trending Now</h2>
+        <div class="trending-row">
+            <% if (movies.length > 0) { %>
+                <% movies.forEach((movie, index) => { %>
+                    <div class="trending-card">
+                        <span class="trending-number"><%= index + 1 %></span>
+                        <img src="/assets/uploads/<%= movie.image %>" alt="<%= movie.title %>">
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <!-- Static Fallback if no movies in DB -->
+                <% for(let i=1; i<=6; i++) { %>
+                    <div class="trending-card">
+                        <span class="trending-number"><%= i %></span>
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop" alt="Fallback Movie">
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </section>
+</div>
+
+<%- include('footer') %>
